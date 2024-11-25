@@ -39,10 +39,25 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-# Configures Elixir's Logger
+config :logger,
+  backends: [:console, {LoggerFileBackend, :error_log}]
+
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  # Уровень для вывода в консоль - все, начиная с debug
+  level: :debug
+
+# Конфигурация для логгера, который записывает только ошибки в файл
+config :logger, :error_log,
+  # Путь до файла с логами
+  path: "error.log",
+  # Записывать только ошибки
+  level: :error,
+  format: "$time $metadata[$level] $message\n",
+  # Добавить, если вам нужно записывать метаданные
+  metadata: [:request_id],
+  # Не обрезать сообщения (по желанию)
+  truncate: :infinity
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
