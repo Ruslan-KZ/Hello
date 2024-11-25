@@ -3,12 +3,7 @@ defmodule HelloWeb.PageController do
 require Logger
   def index(conn, _params) do
 Logger.error("""
-iudfhgijo; h foih
-Lorem Lorem LoremLoremLoremLorem Lorem
-Lorem Lorem LoremLoremLoremLorem LoremLorem Lorem LoremLoremLoremLorem Lorem
-Lorem Lorem LoremLoremLoremLorem LoremLorem Lorem LoremLoremLoremLorem Lorem
-Lorem Lorem LoremLoremLoremLorem LoremLorem Lorem LoremLoremLoremLorem LoremLorem Lorem LoremLoremLoremLorem Lorem
-Lorem Lorem LoremLoremLoremLorem LoremLorem Lorem LoremLoremLoremLorem LoremLorem Lorem LoremLoremLoremLorem Lorem
+Ошибки
 """)
     render(conn, "index.html")
   end
