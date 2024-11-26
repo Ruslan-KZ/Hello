@@ -1,5 +1,5 @@
 defmodule Hello.Calculate do
-    def test do
-      IO.inspect(100+510+100)
+    def test (nam) do
+      Enum.reduce(nam, 0, fn x, acc -> acc * x * x end)
     end
 end

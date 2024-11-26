@@ -47,11 +47,14 @@ defmodule Hello.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
+      {:jason, "~> 1.2"},    # Убедитесь, что используете Jason для парсинга JSON
       {:plug_cowboy, "~> 2.5"},
-      {:logger_file_backend, "~> 0.0.10"}
+      {:logger_file_backend, "~> 0.0.10"},
+      # Если не используете AlternativeJsonLibrary, удалите её из зависимостей
+      # {:alternative_json_library, "~> 1.0"}
     ]
   end
+
 
   # Aliases are shortcuts or tasks specific to the current project.
   # For example, to install project dependencies and perform other setup tasks, run:
