@@ -32,5 +32,7 @@ defmodule Hello.Test do
     end)
   end
 
-  
+  def sqrt(number) do
+    Enum.reduce(1..number, 0, fn x, acc -> acc + x * x end)
+  end
 end
