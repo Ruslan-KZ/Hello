@@ -35,4 +35,9 @@ defmodule Hello.Test do
   def sqrt(number) do
     Enum.reduce(1..number, 0, fn x, acc -> acc + x * x end)
   end
+
+  def pi() do
+    list = 1..10000
+    Enum.map(list, fn x -> x * x end)
+  end
 end

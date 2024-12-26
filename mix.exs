@@ -50,6 +50,7 @@ defmodule Hello.MixProject do
       {:jason, "~> 1.2"},    # Убедитесь, что используете Jason для парсинга JSON
       {:plug_cowboy, "~> 2.5"},
       {:logger_file_backend, "~> 0.0.10"},
+      # {:igniter, "~> 0.3"},
       # Если не используете AlternativeJsonLibrary, удалите её из зависимостей
       # {:alternative_json_library, "~> 1.0"}
     ]
