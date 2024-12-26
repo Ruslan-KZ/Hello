@@ -40,4 +40,12 @@ defmodule Hello.Test do
     list = 1..10000
     Enum.map(list, fn x -> x * x end)
   end
+
+  def factorial(n) when n == 0 do
+    1
+  end
+
+  def factorial(n) when n > 0 do
+    n * factorial(n - 1)
+  end
 end
