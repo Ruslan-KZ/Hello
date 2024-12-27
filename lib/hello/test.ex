@@ -48,4 +48,37 @@ defmodule Hello.Test do
   def factorial(n) when n > 0 do
     n * factorial(n - 1)
   end
+
+  def plag_me(conn, opts) do
+    IO.inspect("INSPECT PLAG OPTS")
+    opts |> IO.inspect()
+    IO.puts("=====================")
+
+    IO.inspect("INSPECT CONN")
+
+    conn
+    |> IO.inspect()
+    |> IO.puts("=====================")
+  end
+
+  def my_fan({arg1, arg2}) do
+    arg1 + arg2
+  end
+
+  def fn_tuple() do
+
+  end
+
+  def area({:rec, a, b}) do
+    a * b
+  end
+
+  def area({:sqr, a}) do
+    a * a
+  end
+
+  def area({:circ, a}) do
+    a * a * 3.14
+  end
+  
 end
