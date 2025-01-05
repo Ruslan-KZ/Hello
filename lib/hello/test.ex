@@ -66,7 +66,6 @@ defmodule Hello.Test do
   end
 
   def fn_tuple() do
-
   end
 
   def area({:rec, a, b}) do
@@ -80,5 +79,75 @@ defmodule Hello.Test do
   def area({:circ, a}) do
     a * a * 3.14
   end
-  
+
+  def current_process() do
+    current_process = self()
+
+    spawn_link(fn ->
+      send(current_process, {:msg, "hello world"})
+    end)
+
+    receive do
+      {:msg, contents} -> IO.puts(contents)
+    end
+  end
+
+  def raise_error() do
+    try do
+      raise "error"
+    rescue
+      e in RuntimeError -> IO.puts("Произошла ошибка: #{e.message}")
+    end
+  end
+
+  def describe_list([]), do: "пусто"
+
+  def describe_list([x]), do: "один элемент: #{x}"
+
+  def describe_list([x, y]), do: "два элемента: #{x} и #{y}"
+
+  def describe_list([x | _]), do: "много элементов, первый: #{x}"
+
+  def operation({operation, a, b}) do
+    case operation do
+      :add -> a + b
+      :sub -> a - b
+      :div -> if b == 0, do: raise("деление на ноль"), else: a / b
+      :mul -> a * b
+      :mod -> rem(a, b)
+      :pow -> a ** b
+      _ -> raise "неизвестная операция"
+    end
+  end
+
+  def calc({:add, a, b}), do: a + b
+  def calc({:subtract, a, b}), do: a - b
+  def calc({:multiply, a, b}), do: a * b
+  def calc({:divide, _a, 0}), do: {:error, "unsupported operation"}
+  def calc({:divide, a, b}), do: a / b
+  def calc(_), do: {:error, "unsupported operation"}
+
+  def filter_adults(data) do
+    for {id, {_name, age}} <- data, age > 18, do: id
+    # data = [{1, {"Alice", 20}}, {2, {"Bob", 17}}, {3, {"Carol", 25}}]
+  end
+
+  def maps(data) do
+    case {Map.has_key?(data, :name), Map.has_key?(data, :age), Map.has_key?(data, :gender)} do
+      {true, true, true} ->
+        cond do
+          data[:age] >= 18 and data[:gender] == "male" ->
+            "Имя: #{data[:name]}, взрослый, мужчина"
+
+          data[:age] >= 18 and data[:gender] == "female" ->
+            "Имя: #{data[:name]}, взрослая, женщина"
+
+          data[:age] < 18 ->
+            "Имя: #{data[:name]}, несовершеннолетний"
+        end
+
+      _ ->
+        "Неверные данные"
+    end
+  end
 end

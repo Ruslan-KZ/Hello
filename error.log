@@ -2170,3 +2170,9 @@ Request: GET /
 
 12:16:23.431 [error] 220
 12:21:03.556 [error] 220
+15:35:52.223 [error] Process #PID<0.2193.0> on node :"pulsar_ruslan@127.0.0.1" raised an exception
+** (Protocol.UndefinedError) protocol Enumerable not implemented for {"John", 18} of type Tuple. This protocol is implemented for the following type(s): DBConnection.PrepareStream, DBConnection.Stream, Date.Range, Ecto.Adapters.SQL.Stream, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Jason.OrderedObject, List, Map, MapSet, Postgrex.Stream, Range, Stream
+    (elixir 1.13.0) lib/enum.ex:1: Enumerable.impl_for!/1
+    (elixir 1.13.0) lib/enum.ex:143: Enumerable.reduce/3
+    (elixir 1.13.0) lib/enum.ex:4143: Enum.reduce/3
+    (hello 0.1.0) lib/hello/test.ex:147: anonymous fn/1 in Hello.Test.filter_abults/1
