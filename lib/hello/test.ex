@@ -150,4 +150,33 @@ defmodule Hello.Test do
         "Неверные данные"
     end
   end
+
+  def extract_user(user) do
+    with {:ok, login} <- extract_login(user),
+         {:ok, email} <- extract_email(user),
+         {:ok, password} <- extract_password(user) do
+      {:ok, %{login: login, email: email, password: password}}
+    else
+      error -> error
+    end
+  end
+
+  def extract_login(%{login: login}), do: {:ok, login}
+  def extract_login(_), do: {:error, "login not found"}
+
+  def extract_email(%{email: email}), do: {:ok, email}
+  def extract_email(_), do: {:error, "email not found"}
+
+  def extract_password(%{password: password}), do: {:ok, password}
+  def extract_password(_), do: {:error, "password not found"}
+
+  def extract_users(user) do
+    with {:ok, login} <- extract_login(user),
+         {:ok, email} <- extract_email(user),
+         {:ok, password} <- extract_password(user) do
+      {:ok, %{login: login, email: email, password: password}}
+      # user = %{login: "user1", email: "user1@example.com", password: "secret"}
+      # Hello.Test.extract_users(user)
+    end
+  end
 end
