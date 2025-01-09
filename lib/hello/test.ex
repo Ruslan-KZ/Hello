@@ -161,6 +161,13 @@ defmodule Hello.Test do
     end
   end
 
+  # defp extract_login(%{"login" => login}), do: {:ok, login}
+  # defp extract_login(_), do: {:error, "login missing"}
+  # defp extract_email(%{"email" => email}), do: {:ok, email}
+  # defp extract_email(_), do: {:error, "email missing"}
+  # defp extract_password(%{"password" => password}), do: {:ok, password}
+  # defp extract_password(_), do: {:error, "password missing"}
+
   def extract_login(%{login: login}), do: {:ok, login}
   def extract_login(_), do: {:error, "login not found"}
 
@@ -178,5 +185,32 @@ defmodule Hello.Test do
       # user = %{login: "user1", email: "user1@example.com", password: "secret"}
       # Hello.Test.extract_users(user)
     end
+  end
+
+  @spec print(non_neg_integer()) :: :ok
+  def print(1), do: IO.puts("1")
+
+  def print(n) do
+    print(n, [])
+  end
+
+  defp print(0, acc) do
+    Enum.each(acc, &IO.puts/1)
+  end
+
+  defp print(n, acc) do
+    print(n - 1, [n | acc])
+  end
+
+  def greet_ruslan do
+    IO.puts(String.upcase("привет руслан"))
+  end
+
+  @spec sum([number()]) :: number()
+  def sum([]), do: 0
+
+  def sum([head | tail]) do
+    summ = [head | tail]
+    Enum.sum(summ)
   end
 end
