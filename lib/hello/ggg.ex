@@ -19,6 +19,10 @@ defmodule NaturalNums do
     do_plas(0, list)
   end
 
+
+
+  
+
   defp do_plas(current, []) do
     current
   end
@@ -45,12 +49,34 @@ defmodule NaturalNums do
   def read(file_path) do
     case File.read(file_path) do
       {:ok, content} ->
-        content  # Возвращает содержимое файла
+        content
+
       {:error, reason} ->
-        "Failed to read file: #{inspect(reason)}"  # Обрабатывает ошибки
+        "Failed to read file: #{inspect(reason)}"
     end
   end
 
+  def calculate_length([]), do: 0
+  def calculate_length([_head | tail]), do: 1 + calculate_length(tail)
+
+  def range(from, to) when from <= to do
+    [from | range(from + 1, to)]
+  end
+
+  def range(_from, _to), do: []
+
+  def positive(list) do
+    do_positive([], list)
+  end
+
+  defp do_positive(acc, []), do: acc
 
 
+  defp do_positive(acc, [head | tail]) do
+    if rem(head, 2) == 0 do
+      do_positive([head | acc], tail)
+    else
+      do_positive(acc, tail)
+    end
+  end
 end
